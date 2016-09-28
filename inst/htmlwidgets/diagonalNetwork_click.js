@@ -147,9 +147,9 @@ HTMLWidgets.widget({
           .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
           .text(function(d) { return d.name; })
          // .style("fill-opacity", 1e-6)
-          .style("font", x.options.fontSize + "px " + x.options.fontFamily)
-          .style("opacity", x.options.opacity)
-          .style("fill", x.options.textColour);
+          .style("font", function(d) { return d.target_font_size; } + "px " + x.options.fontFamily)
+          .style("opacity", function(d) { return d.target_alpha; })
+          .style("fill", function(d) { return d.target_text_color; });
 
       // Transition nodes to their new position.
       var nodeUpdate = node.transition()
@@ -185,8 +185,23 @@ HTMLWidgets.widget({
       link.enter().insert("path", "g")
           .attr("class", "link")
           .style("fill", "none")
-          .style("stroke", x.options.linkColour)
-          .style("opacity", "0.55")
+          .style("stroke", function(d){
+              if (d.target.target_color) 
+                { 
+                  return d.target.target_color
+                } else {
+                  return "#ccc"
+                }
+              }
+              )
+          .style("opacity", function(d){
+              if (d.target.target_alpha) 
+                { 
+                  return d.target.target_alpha
+                } else {
+                  return 1
+                }
+              })
           .style("stroke-width", "1.5px")
           .attr("d", function(d) {
             var o = {x: source.x0, y: source.y0};

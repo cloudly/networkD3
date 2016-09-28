@@ -1,0 +1,9 @@
+URL <- paste0("https://cdn.rawgit.com/christophergandrud/networkD3/",
+              "master/JSONdata//flare.json")
+
+## Convert to list format
+Flare <- jsonlite::fromJSON(URL, simplifyDataFrame = FALSE)
+
+## Recreate Bostock example from http://bl.ocks.org/mbostock/4063550
+networkD3::diagonalNetwork_click(List = Flare, fontSize = 10, opacity = 0.9)
+networkD3::diagonalNetwork(List = Flare, fontSize = 10, opacity = 0.9)

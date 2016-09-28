@@ -76,6 +76,14 @@ HTMLWidgets.widget({
     var nodes = tree.nodes(root),
       links = tree.links(nodes);
 
+    function collapse(d) {
+    if (d.children) {
+      d._children = d.children;
+      d._children.forEach(collapse);
+      d.children = null;
+    }
+  }
+
     var diagonal = d3.svg.diagonal()
       .projection(function(d) { return [d.y, d.x]; });
 

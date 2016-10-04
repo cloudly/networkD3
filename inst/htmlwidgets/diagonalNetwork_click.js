@@ -52,7 +52,7 @@ HTMLWidgets.widget({
     // margin handling
     //   set our default margin to be 20
     //   will override with x.options.margin if provided
-    var margin = {top: 20, right: 20, bottom: 20, left: 80}; //same
+    var margin = {top: 20, right: 20, bottom: 20, left: 180}; //same
 
     //   go through each key of x.options.margin
     //   use this value if provided from the R side
